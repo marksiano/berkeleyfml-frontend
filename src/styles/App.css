@@ -1,0 +1,283 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.App-title {
+  font-size: 1.5em;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+.submit_button {
+  margin-top: 8px;
+  float: left;
+}
+
+.cancel_button {
+  margin-top: 8px;
+  float: left;
+  margin-left: 8px;
+}
+
+.post_text {
+  margin-left: 10px;
+  text-align: left;
+  font-size: 20px;
+}
+
+.open_quote {
+  margin-left: 10px;
+  margin-right: 6px;
+  margin-top: 10px;
+  font-size: 50px;
+  display: inline;
+  vertical-align: middle;
+  color: #BBBBBB;
+}
+
+.closed_quote {
+  margin-left: 6px;
+  margin-right: 10px;
+  margin-top: 10px;
+  font-size: 50px;
+  display: inline;
+  vertical-align: middle;
+  color: #BBBBBB;
+}
+
+.text_div {
+  margin-top: 25px;
+  margin-right: 15px;
+  margin-left: 2px;
+  line-height: 1.2;
+}
+
+.post_td {
+  
+}
+
+.container {
+    display: flex;
+    align-items: flex-start;
+    width: 600px;
+    padding-top: 8px;
+}
+.container .left {
+    height: 50px;
+    text-align: left;
+}
+.container .right {
+    vertical-align: bottom;
+    
+    margin-bottom: 10px;
+    margin-left: auto;
+}
+
+.votes_text {
+  margin-top: -2px;
+  margin-bottom: -2px;
+  font-size: 15px;
+}
+
+.left_quote {
+  width: 45px;
+  margin-left: 0px;
+  margin-top: 10px;
+}
+
+.post_container {
+  display: block;
+}
+
+.info_text {
+  text-align: left;
+  font-size: 14px;
+  margin-left: 25px;
+}
+
+.reply_box {
+  margin-left: 15px;
+  margin-right: 15px;
+  overflow: hidden;
+}
+
+.comment {
+  text-align: left;
+  margin-left: 15px;
+  font-size: 13px;
+  margin-bottom: 0px;
+}
+
+.line {
+  border-color: #CCCCCC;
+  margin-right: 15px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.row_container {
+  background-color: white;
+  width: 600px;
+  margin-top: 10px;
+  margin-bottom: 25px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 6px;
+  border-style: solid;
+  border-width: 5px;
+  border-color: #CCCCCC;
+}
+
+.title_div {
+  width: 600px;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  border-color: #CCCCCC;
+  text-align: left;
+}
+
+.title_container {
+  background-color: white;
+  border-radius: 6px;
+  border-style: solid;
+  border-width: 5px;
+  border-color: #CCCCCC;
+  display: inline-block;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.comments_div {
+  padding-bottom: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.table_container {
+}
+
+.reply_box_container {
+  margin-top: 15px;
+  margin-bottom: 0px;
+}
+
+.reply_link {
+  cursor: pointer;
+}
+
+.title_text {
+  font-family: 'SansSerif';
+  font-size: 42px;
+  margin-bottom: -7px;
+}
+
+.description_text {
+  font-size: 14px;
+  color: #7A7A7A;
+  margin-left: 1px;
+}
+
+.submit_fml {
+  cursor: pointer;
+  color: white;
+  bottom: 0;
+  text-align: right;
+  display: block;
+}
+
+.submit_fml:hover {
+  cursor: pointer;
+  color: white;
+  bottom: 0;
+  text-align: right;
+  display: block;
+}
+
+.submit_fml:visited {
+  cursor: pointer;
+  color: white;
+  bottom: 0;
+  text-align: right;
+  display: block;
+}
+
+.submit_fml:active {
+  cursor: pointer;
+  color: white;
+  bottom: 0;
+  text-align: right;
+  display: block;
+}
+
+.submit_fml_container {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+}
+
+.parent_container {
+  position: relative;
+}
+
+.add_post_container {
+  background-color: white;
+  width: 600px;
+  margin-top: 20px;
+  margin-bottom: 25px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 6px;
+  border-style: solid;
+  border-width: 5px;
+  border-color: #CCCCCC;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.submit_disclaimer {
+  font-size: 14px;
+  color: #7A7A7A;
+  margin-top: 10px;
+  margin-bottom: 0px;
+}
+
+@font-face {
+  font-family: 'SansSerif';
+  font-style: normal;
+  src: 
+       url('../fonts/SourceSansPro-Bold.ttf') format('truetype')
+}
+
+body {
+  background-color: #456C7E;
+  /*background: repeating-linear-gradient(
+  45deg,
+  #ffd700,
+  #ffd700 19px,
+  #456C7E 1px,
+  #456C7E 20px
+);*/
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
