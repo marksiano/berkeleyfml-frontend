@@ -34,7 +34,10 @@ class App extends Component {
       axios.post(constants.api_url + 'posts/authenticate', {
         username: credentials.username,
         password: credentials.password
-      })
+      }, {
+          headers: {
+            'Authorization': localStorage.getItem('jwt-token')
+          }})
       .then(response => {
         console.log("Got JWT Token");
         localStorage.setItem('jwt-token', 'Bearer ' + response.data);

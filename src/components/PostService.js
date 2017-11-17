@@ -20,7 +20,10 @@ class PostService {
       downvotes: 0,
       dateObject: today,
       dateString: date
-    })
+    }, {
+          headers: {
+            'Authorization': localStorage.getItem('jwt-token')
+          }})
     .then(function (response) {
         console.log(response);
     })

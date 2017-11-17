@@ -10,7 +10,10 @@ class CommentService {
     axios.post(constants.api_url + 'posts/comment/' + postId, {
       comments: data,
       numComments: numComments
-    })
+    }, {
+          headers: {
+            'Authorization': localStorage.getItem('jwt-token')
+          }})
     .then(function (response) {
         console.log(response);
     })

@@ -165,7 +165,10 @@ class TableRow extends Component {
       this.props.onUpvote(post_id);
       this.props.obj.upvotes -= 1;
       this.forceUpdate();
-      axios.post(constants.api_url + 'posts/upvote/' + post_id + '/true') //The true indicates that the post was previously upvoted
+      axios.post(constants.api_url + 'posts/upvote/' + post_id + '/true', {
+          headers: {
+            'Authorization': localStorage.getItem('jwt-token')
+          }}) //The true indicates that the post was previously upvoted
       .then(function (response) {
           console.log(response);
       })
@@ -178,7 +181,10 @@ class TableRow extends Component {
     this.props.onUpvote(post_id);
     this.props.obj.upvotes += 1;
     this.forceUpdate();
-    axios.post(constants.api_url + 'posts/upvote/' + post_id + '/false')
+    axios.post(constants.api_url + 'posts/upvote/' + post_id + '/false', {
+          headers: {
+            'Authorization': localStorage.getItem('jwt-token')
+          }})
     .then(function (response) {
         console.log(response);
     })
@@ -193,7 +199,10 @@ class TableRow extends Component {
       this.props.onDownvote(post_id);
       this.props.obj.downvotes -= 1;
       this.forceUpdate();
-      axios.post(constants.api_url + 'posts/downvote/' + post_id + '/true')
+      axios.post(constants.api_url + 'posts/downvote/' + post_id + '/true', {
+          headers: {
+            'Authorization': localStorage.getItem('jwt-token')
+          }})
       .then(function (response) {
           console.log(response);
       })
@@ -206,7 +215,10 @@ class TableRow extends Component {
     this.props.onDownvote(post_id);
     this.props.obj.downvotes += 1;
     this.forceUpdate();
-    axios.post(constants.api_url + 'posts/downvote/' + post_id + '/false')
+    axios.post(constants.api_url + 'posts/downvote/' + post_id + '/false', {
+          headers: {
+            'Authorization': localStorage.getItem('jwt-token')
+          }})
     .then(function (response) {
         console.log(response);
     })
