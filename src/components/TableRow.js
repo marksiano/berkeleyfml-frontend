@@ -40,7 +40,7 @@ class TableRow extends Component {
                   </div>
 
                   <div>
-                    <p className="votes_text">+{this.props.obj.upvotes}/-{Math.abs(this.props.obj.downvotes)}</p>
+                    <p className="votes_text">+{Math.abs(this.props.obj.upvotes)}/-{Math.abs(this.props.obj.downvotes)}</p>
                   </div>
                   <div>
                     <img width="28px" style={{cursor: "pointer"}} src={require('../images/downvote.png')} onClick={() => this.downvotePressed(this.props.obj._id)}/>
@@ -164,8 +164,8 @@ class TableRow extends Component {
     if (this.props.upvotedPosts != undefined && this.props.upvotedPosts.indexOf(post_id) != -1) {
       this.props.onUpvote(post_id);
       this.props.obj.upvotes -= 1;
-      this.forceUpdate();
-      axios.post(constants.api_url + 'posts/upvote/' + post_id + '/true', {
+      //this.forceUpdate();
+      axios.post((constants.api_url + 'posts/upvote/' + post_id + '/true'), {}, {
           headers: {
             'Authorization': localStorage.getItem('jwt-token')
           }}) //The true indicates that the post was previously upvoted
@@ -180,8 +180,8 @@ class TableRow extends Component {
 
     this.props.onUpvote(post_id);
     this.props.obj.upvotes += 1;
-    this.forceUpdate();
-    axios.post(constants.api_url + 'posts/upvote/' + post_id + '/false', {
+    //this.forceUpdate();
+    axios.post((constants.api_url + 'posts/upvote/' + post_id + '/false'), {}, {
           headers: {
             'Authorization': localStorage.getItem('jwt-token')
           }})
@@ -198,8 +198,8 @@ class TableRow extends Component {
     if (this.props.downvotedPosts != undefined && this.props.downvotedPosts.indexOf(post_id) != -1) {
       this.props.onDownvote(post_id);
       this.props.obj.downvotes -= 1;
-      this.forceUpdate();
-      axios.post(constants.api_url + 'posts/downvote/' + post_id + '/true', {
+      //this.forceUpdate();
+      axios.post((constants.api_url + 'posts/downvote/' + post_id + '/true'), {}, {
           headers: {
             'Authorization': localStorage.getItem('jwt-token')
           }})
@@ -207,24 +207,24 @@ class TableRow extends Component {
           console.log(response);
       })
       .catch(function (error) {
+          console.log(error);
+      });
+    } else {
+      this.props.onDownvote(post_id);
+      this.props.obj.downvotes += 1;
+      //this.forceUpdate();
+      console.log("JWT TOKEN: " + localStorage.getItem('jwt-token'));
+      axios.post((constants.api_url + 'posts/downvote/' + post_id + '/false'), {}, {
+            headers: {
+              'Authorization': localStorage.getItem('jwt-token')
+            }})
+      .then(function (response) {
+          console.log(response);
+      })
+      .catch(function (error) {
         console.log(error);
       });
-      return;
     }
-
-    this.props.onDownvote(post_id);
-    this.props.obj.downvotes += 1;
-    this.forceUpdate();
-    axios.post(constants.api_url + 'posts/downvote/' + post_id + '/false', {
-          headers: {
-            'Authorization': localStorage.getItem('jwt-token')
-          }})
-    .then(function (response) {
-        console.log(response);
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
   }
 }
 
