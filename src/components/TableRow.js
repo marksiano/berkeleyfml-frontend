@@ -160,6 +160,7 @@ class TableRow extends Component {
     }
 
   upvotePressed(post_id) {
+    var constants = require('../constants.json');
     if (this.props.upvotedPosts != undefined && this.props.upvotedPosts.indexOf(post_id) != -1) {
       this.props.onUpvote(post_id);
       this.props.obj.upvotes -= 1;
@@ -187,6 +188,7 @@ class TableRow extends Component {
   }
 
   downvotePressed(post_id) {
+    var constants = require('../constants.json');
     if (this.props.downvotedPosts != undefined && this.props.downvotedPosts.indexOf(post_id) != -1) {
       this.props.onDownvote(post_id);
       this.props.obj.downvotes -= 1;
