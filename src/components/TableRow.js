@@ -49,7 +49,7 @@ class TableRow extends Component {
               </div>
 
               <div className="post_info">
-                <p className="info_text">{this.props.obj.dateString} | <a className="reply_link" onClick={() => this.onCommentClick(this.props.obj._id)}>Reply</a></p>
+                <p className="info_text">{this.props.obj.dateString} | <a className="reply_link" onClick={() => this.onCommentClick(this.props.obj._id)}>Reply</a> | <a className="permalink" href={"/post/" + this.props.obj._id}>Permalink</a></p>
               </div>
             </div>
           
@@ -164,7 +164,7 @@ class TableRow extends Component {
       this.props.onUpvote(post_id);
       this.props.obj.upvotes -= 1;
       this.forceUpdate();
-      axios.post('http://localhost:4200/posts/upvote/' + post_id + '/true') //The true indicates that the post was previously upvoted
+      axios.post(constants.api_url + 'posts/upvote/' + post_id + '/true') //The true indicates that the post was previously upvoted
       .then(function (response) {
           console.log(response);
       })
@@ -177,7 +177,7 @@ class TableRow extends Component {
     this.props.onUpvote(post_id);
     this.props.obj.upvotes += 1;
     this.forceUpdate();
-    axios.post('http://localhost:4200/posts/upvote/' + post_id + '/false')
+    axios.post(constants.api_url + 'posts/upvote/' + post_id + '/false')
     .then(function (response) {
         console.log(response);
     })
@@ -191,7 +191,7 @@ class TableRow extends Component {
       this.props.onDownvote(post_id);
       this.props.obj.downvotes -= 1;
       this.forceUpdate();
-      axios.post('http://localhost:4200/posts/downvote/' + post_id + '/true')
+      axios.post(constants.api_url + 'posts/downvote/' + post_id + '/true')
       .then(function (response) {
           console.log(response);
       })
@@ -204,7 +204,7 @@ class TableRow extends Component {
     this.props.onDownvote(post_id);
     this.props.obj.downvotes += 1;
     this.forceUpdate();
-    axios.post('http://localhost:4200/posts/downvote/' + post_id + '/false')
+    axios.post(constants.api_url + 'posts/downvote/' + post_id + '/false')
     .then(function (response) {
         console.log(response);
     })
@@ -219,7 +219,8 @@ function mapStateToProps(state) {
   return {
     upvotedPosts: state.upvoted.upvoted,
     downvotedPosts: state.upvoted.downvoted,
-    posts: state.posts.data
+    posts: state.posts.data,
+    authorization: state.authorization
   };
 }
 

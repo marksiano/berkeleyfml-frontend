@@ -10,6 +10,9 @@ export const AUTHOR_UPDATED = 'AUTHOR_UPDATED';
 export const COMMENT_UPDATED = 'COMMENT_UPDATED';
 export const TOGGLE_MODAL = 'TOGGLE_MODAL';
 export const SUBMIT_FML = 'SUBMIT_FML';
+export const AUTHORIZED = 'AUTHORIZED';
+export const DID_INITIAL_LOAD = 'DID_INITIAL_LOAD';
+export const LOAD_POST = 'LOAD_POST';
 
 export function requestPosts(data) {
   return {
@@ -93,5 +96,30 @@ export function submitFML(text) {
 	return {
 		type: SUBMIT_FML,
 		text
+	}
+}
+
+export function authorize() {
+	return {
+		type: AUTHORIZED
+	}
+}
+
+export function didInitialLoad() {
+	return {
+		type: DID_INITIAL_LOAD
+	}
+}
+
+export function loadPost(postObject) {
+	return {
+		type: LOAD_POST,
+		id: postObject.id,
+		text: postObject.text,
+	    upvotes: postObject.upvotes,
+	    downvotes: postObject.downvotes,
+	    dateObject: postObject.dateObject,
+	    dateString: postObject.dateString,
+	    comments: postObject.comments.slice()
 	}
 }

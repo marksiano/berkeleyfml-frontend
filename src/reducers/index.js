@@ -5,6 +5,8 @@ import UpvotedReducer from './upvoted'
 import PagesReducer from './pages'
 import CommentsReducer from './comments'
 import ModalReducer from './modal'
+import AuthorizationReducer from './authorization'
+import CurrentPostReducer from './currentpost'
 
 const rootReducer = combineReducers({
   posts: PostsReducer,
@@ -12,7 +14,9 @@ const rootReducer = combineReducers({
   upvoted: UpvotedReducer,
   pages: PagesReducer,
   comments: CommentsReducer,
-  modal: ModalReducer
+  modal: ModalReducer,
+  authorization: AuthorizationReducer,
+  currentpost: CurrentPostReducer
 });
 
 export default rootReducer;

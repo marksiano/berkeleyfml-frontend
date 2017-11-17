@@ -17,7 +17,7 @@ export default function configureStore(initialState) {
   );
 
   // begin periodically persisting the store
-  persistStore(store, {blacklist: ['posts', 'pages', 'comments', 'modal']}, () => {
+  persistStore(store, {blacklist: ['posts', 'pages', 'comments', 'modal', 'authorization']}, () => {
     store.dispatch(Actions.rehydrationComplete());
     console.log('rehyrdration complete')
   }

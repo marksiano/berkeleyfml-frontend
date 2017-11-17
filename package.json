@@ -7,9 +7,9 @@
     "bootstrap": "^4.0.0-beta",
     "css-loader": "^0.28.7",
     "jquery": "^3.2.1",
-    "popper.js": "^1.12.5",
     "mongoose": "^4.13.2",
     "mongoose-paginate": "^5.0.3",
+    "popper.js": "^1.12.5",
     "react": "^16.0.0",
     "react-bootstrap": "^0.31.5",
     "react-dom": "^16.0.0",
@@ -22,7 +22,8 @@
     "redux": "^3.7.2",
     "redux-persist": "^4.10.1",
     "redux-thunk": "^2.2.0",
-    "style-loader": "^0.19.0"
+    "style-loader": "^0.19.0",
+    "webpack": "^3.8.1"
   },
   "scripts": {
     "start": "react-scripts start",

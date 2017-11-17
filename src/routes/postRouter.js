@@ -6,6 +6,7 @@ var postRouter = express.Router();
 
 // Require Post model in our routes module
 var Post = require('../models/Post');
+var constants = require('../constants.json');
 
 // Defined store route
 postRouter.route('/add/post').post(function (req, res) {
@@ -21,7 +22,7 @@ postRouter.route('/add/post').post(function (req, res) {
 
 // Defined get data(index or listing) route
 postRouter.route('/').get(function (req, res) {
-  Post.paginate({}, {offset: 0, limit: 2}, function (err, posts){
+  Post.paginate({}, {offset: 0, limit: constants.offset}, function (err, posts){
     if(err){
       console.log(err);
     }
@@ -34,7 +35,7 @@ postRouter.route('/').get(function (req, res) {
 // Defined get data(index or listing) route
 postRouter.route('/offset/:offset').get(function (req, res) {
   console.log("Getting with offset");
-  Post.paginate({}, {offset: +req.params.offset, limit: 2}, function (err, posts){
+  Post.paginate({}, {offset: +req.params.offset, limit: constants.offset}, function (err, posts){
     if(err){
       console.log(err);
     }

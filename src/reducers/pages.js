@@ -1,12 +1,18 @@
-import { REQUEST_POSTS, UPVOTE_POST, REHYDRATION_COMPLETE } from '../actions';
+import { REQUEST_POSTS, UPVOTE_POST, REHYDRATION_COMPLETE, DID_INITIAL_LOAD } from '../actions';
 
 const initialState =  {
   current_page: 0,	//each page has 20 posts
-  total_posts: 0
+  total_posts: 0,
+  did_initial_load: false
 };
 
 export default function pages(state = initialState, action) {
   switch (action.type) {
+
+  	case DID_INITIAL_LOAD:
+  		state.did_initial_load = true;
+  		return state;
+
     default:
       return state;
   }

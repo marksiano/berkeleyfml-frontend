@@ -24,6 +24,27 @@ class App extends Component {
   }
 
   render() {
+    //Receive JWT token and store in local storage, then change state once received
+    //If not authorized, perform the authorization
+
+    var credentials = require('../credentials.json');
+    var constants = require('../constants.json');
+
+    if (!this.props.authorization.authorized) {
+      axios.post(constants.api_url + 'posts/authenticate', {
+        username: credentials.username,
+        password: credentials.password
+      })
+      .then(response => {
+        console.log("Got JWT Token");
+        localStorage.setItem('jwt-token', 'Bearer ' + response.data);
+        console.log("DONE SETTING: " + localStorage.getItem('jwt-token'));
+        this.props.actions.authorize();
+      })
+      .catch(error => {
+        console.log("Error: " + JSON.stringify(error));
+      });
+    }
 
     function loadFunc() {
       console.log("Updating: " + JSON.stringify(this.props.pages.data));
@@ -33,8 +54,11 @@ class App extends Component {
         return;
       } else {
       console.log("Loading offset");
-      console.log("Getting with offset: " + (this.props.pages.data.offset + 2));
-        axios.get('http://localhost:4200/posts/offset/' + (+this.props.pages.data.offset + 2))
+      console.log("Getting with offset: " + (this.props.pages.data.offset));
+        axios.get(constants.api_url + 'posts/offset/' + (+this.props.pages.data.offset), {
+          headers: {
+            'Authorization': localStorage.getItem('jwt-token')
+          }})
         .then(response => {
           this.props.actions.updatePages(); //Update pages increases the offset so we get with a new offset next time.
           /*
@@ -59,24 +83,13 @@ class App extends Component {
     return (
       <div className="parent_container">
 
-      {/*<Modal isOpen={this.props.modal.activated} toggle={this.toggleModal}>
-          <ModalHeader toggle={this.toggleModal}>Modal title</ModalHeader>
-          <ModalBody>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-          </ModalBody>
-          <ModalFooter>
-            <Button color="primary" onClick={this.toggleModal}>Do Something</Button>{' '}
-            <Button color="secondary" onClick={this.toggleModal}>Cancel</Button>
-          </ModalFooter>
-        </Modal>*/}
-
         <div className="App">
           <p className="App-intro">
           <InfiniteScroll
             pageStart={0}
             loadMore={loadFunc.bind(this)}
-            hasMore={this.props.requestedPages == true && (this.props.pages.data.docs == undefined || this.props.pages.data.offset + 2 < this.props.pages.data.total)}
-            loader={<div className="loader">Loading...</div>}
+            hasMore={this.props.requestedPages == true && (this.props.pages.data.docs == undefined || this.props.pages.data.offset < this.props.pages.data.total)}
+            loader={<div className="loader"></div>}
         >
             {<IndexPost onDownvote={this.props.actions.downvotePost} onUpvote={this.props.actions.upvotePost} onLoad={this.props.actions.requestPosts} postData={this.props.posts} />}
         </InfiniteScroll>
@@ -99,7 +112,8 @@ function mapStateToProps(state) {
     rehydrationComplete: state.rehydration.completed,
     pages: state.posts,
     requestedPages: state.posts.data.requestedPages,
-    modal: state.modal
+    modal: state.modal,
+    authorization: state.authorization
   };
 }
 

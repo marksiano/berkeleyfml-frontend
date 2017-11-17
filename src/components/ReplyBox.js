@@ -146,7 +146,8 @@ function mapStateToProps(state) {
   return {
     upvotedPosts: state.upvoted.upvoted,
     posts: state.posts.data,
-    commentData: state.comments
+    commentData: state.comments,
+    authorization: state.authorization
   };
 }
 

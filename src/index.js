@@ -9,6 +9,7 @@ import configureStore from './store/configureStore';
 
 import AddPost from './components/AddPost';
 import IndexPost from './components/IndexPost';
+import Post from './components/Post';
 
 const store = configureStore();
 
@@ -19,6 +20,7 @@ ReactDOM.render(
         <Route exact path='/' component={App} />
         <Route path='/add-post' component={AddPost} />
         <Route path='/index' component={IndexPost} />
+        <Route path='/post/:postId' component={Post} />
       </div>
   </Router>
   </Provider>,

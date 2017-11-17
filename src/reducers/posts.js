@@ -10,6 +10,9 @@ const initialState =  {
 };
 
 export default function posts(state = initialState, action) {
+
+  var constants = require('../constants.json');
+
   switch (action.type) {
 
     /* The action called once posts have been fetched. Saves them to state, which causes UI to update */
@@ -47,7 +50,7 @@ export default function posts(state = initialState, action) {
       return {
         ...state, data: {
           ...state.data,
-          offset: state.data.offset + 2,
+          offset: state.data.offset + constants.offset,
           updating: true,
           replyBoxPostId: state.data.replyBoxPostId,
           replyBoxCommentId: state.data.replyBoxCommentId
