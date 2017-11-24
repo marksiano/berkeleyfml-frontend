@@ -76,6 +76,7 @@ class App extends Component {
 
     return (
       <div className="parent_container">
+      
         <div className="App">
           <p className="App-intro">
           <InfiniteScroll
@@ -89,6 +90,7 @@ class App extends Component {
           </InfiniteScroll>
           </p>
         </div>
+        
 
         <div className="submit_fml_container">
           <a href="/add-post" className="submit_fml">Submit an FML</a>

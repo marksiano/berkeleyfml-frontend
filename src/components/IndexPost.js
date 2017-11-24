@@ -65,7 +65,6 @@ class IndexPost extends Component {
               <p className="description_text">F*ck My Life @ Berkeley</p>
             </div>
           </div>
-
           {this.tabRow()}
         </div>
       );

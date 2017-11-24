@@ -94,7 +94,7 @@ class TableRow extends Component {
                     <ReplyBox postId={this.props.obj._id} commentId={comment._id} />
                   </div>
               }
-              
+
               {this.tabReplies(comment.comments, 1)}
               </div>)
           } else {
