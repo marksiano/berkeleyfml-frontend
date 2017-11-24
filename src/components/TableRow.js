@@ -19,11 +19,9 @@ class TableRow extends Component {
   }
 
   render() {
-    console.log("Upvoted posts: " + JSON.stringify(this.props.upvotedPosts));
     return (
         <div className="row_container" height="800px">
           <div width="100%" height="200px">
-            
             <div className="post_container">
               <div className="container">
                 <div className="left">
@@ -75,9 +73,7 @@ class TableRow extends Component {
   }
 
   onReplyClick(postId, commentId) {
-    console.log("Data received: " + postId + ", " + commentId);
     this.props.actions.openReplyBox(postId, commentId);
-    //this.commentService.sendData(postId, commentId, "Fucker");
   }
 
   //Iterate through all posts, generate table rows
@@ -88,8 +84,9 @@ class TableRow extends Component {
           if (comment.comments != undefined && comment.comments.length != 0) {  //Only show approved posts. the approved tag is changed in mlab
             return (
               <div>
-              <hr className="line" style={{"margin-left": 15}} /><p className="comment"><b>{comment.author}</b> | {comment.timeString} | <a className="reply_link" onClick={() => this.onReplyClick(this.props.obj._id, comment._id)}>Reply</a></p>
+              <hr className="line" style={{"margin-left": 15}} /><p className="comment"><b>{comment.author}</b> | {comment.dateString} at {comment.timeString} | <a className="reply_link" onClick={() => this.onReplyClick(this.props.obj._id, comment._id)}>Reply</a></p>
               <p className="comment">{comment.text}</p>
+
               {
                 this.props.posts.replyBoxCommentId == comment._id && this.props.posts.replyBoxPostId == this.props.obj._id
                   && 
@@ -97,14 +94,12 @@ class TableRow extends Component {
                     <ReplyBox postId={this.props.obj._id} commentId={comment._id} />
                   </div>
               }
-              {this.tabReplies(comment.comments, 1)}
-
               
-
+              {this.tabReplies(comment.comments, 1)}
               </div>)
           } else {
             return <div>
-            <hr className="line" style={{"margin-left": 15}} /><p className="comment"><b>{comment.author}</b> | {comment.timeString} | <a className="reply_link" onClick={() => this.onReplyClick(this.props.obj._id, comment._id)}>Reply</a></p>
+            <hr className="line" style={{"margin-left": 15}} /><p className="comment"><b>{comment.author}</b> | {comment.dateString} at {comment.timeString} | <a className="reply_link" onClick={() => this.onReplyClick(this.props.obj._id, comment._id)}>Reply</a></p>
             <p className="comment">{comment.text}</p>
 
             {
@@ -124,10 +119,9 @@ class TableRow extends Component {
   tabReplies(comments, level) {
     return comments.map(function(reply, i) {
           //Object is the individual post, passed to TableRow
-          //console.log("Post comments: " + JSON.stringify(object.comments));
           if (reply.comments != undefined && reply.comments.length != 0) {  //Only show approved posts. the approved tag is changed in mlab
             return (<div>
-              <hr className="line" style={{"margin-left": 15 + (level * 30)}} /><p className="comment" style={{"margin-left": 15 + (level * 30)}}><b>{reply.author}</b> | {reply.timeString} | <a className="reply_link" onClick={() => this.onReplyClick(this.props.obj._id, reply._id)}>Reply</a></p>
+              <hr className="line" style={{"margin-left": 15 + (level * 30)}} /><p className="comment" style={{"margin-left": 15 + (level * 30)}}><b>{reply.author}</b> | {reply.dateString} at {reply.timeString} | <a className="reply_link" onClick={() => this.onReplyClick(this.props.obj._id, reply._id)}>Reply</a></p>
             <p className="comment" style={{"margin-left": 15 + (level * 30)}}>{reply.text}</p>
 
             {
@@ -143,7 +137,7 @@ class TableRow extends Component {
             </div>)
           } else {
             return <div>
-            <hr className="line" style={{"margin-left": 15 + (level * 30)}} /><p className="comment" style={{"margin-left": 15 + (level * 30)}}><b>{reply.author}</b> | {reply.timeString} | <a className="reply_link" onClick={() => this.onReplyClick(this.props.obj._id, reply._id)}>Reply</a></p>
+            <hr className="line" style={{"margin-left": 15 + (level * 30)}} /><p className="comment" style={{"margin-left": 15 + (level * 30)}}><b>{reply.author}</b> | {reply.dateString} at {reply.timeString} | <a className="reply_link" onClick={() => this.onReplyClick(this.props.obj._id, reply._id)}>Reply</a></p>
             <p className="comment" style={{"margin-left": 15 + (level * 30)}}>{reply.text}</p>
 
             {
@@ -170,10 +164,10 @@ class TableRow extends Component {
             'Authorization': localStorage.getItem('jwt-token')
           }}) //The true indicates that the post was previously upvoted
       .then(function (response) {
-          console.log(response);
+          
       })
       .catch(function (error) {
-        console.log(error);
+        
       });
       return;
     }
@@ -186,10 +180,10 @@ class TableRow extends Component {
             'Authorization': localStorage.getItem('jwt-token')
           }})
     .then(function (response) {
-        console.log(response);
+        
     })
     .catch(function (error) {
-      console.log(error);
+      
     });
   }
 
@@ -204,25 +198,24 @@ class TableRow extends Component {
             'Authorization': localStorage.getItem('jwt-token')
           }})
       .then(function (response) {
-          console.log(response);
+          
       })
       .catch(function (error) {
-          console.log(error);
+          
       });
     } else {
       this.props.onDownvote(post_id);
       this.props.obj.downvotes += 1;
-      //this.forceUpdate();
-      console.log("JWT TOKEN: " + localStorage.getItem('jwt-token'));
+
       axios.post((constants.api_url + 'posts/downvote/' + post_id + '/false'), {}, {
             headers: {
               'Authorization': localStorage.getItem('jwt-token')
             }})
       .then(function (response) {
-          console.log(response);
+          
       })
       .catch(function (error) {
-        console.log(error);
+        
       });
     }
   }

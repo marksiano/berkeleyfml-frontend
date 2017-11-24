@@ -3,7 +3,6 @@
 import axios from 'axios';
 
 class PostService {
-
   //data is the data received from the AddPost component
   sendData(data) {
     var constants = require('../constants.json');
@@ -21,14 +20,14 @@ class PostService {
       dateObject: today,
       dateString: date
     }, {
-          headers: {
-            'Authorization': localStorage.getItem('jwt-token')
-          }})
+    headers: {
+      'Authorization': localStorage.getItem('jwt-token')
+    }})
     .then(function (response) {
-        console.log(response);
+        
     })
     .catch(function (error) {
-      console.log(error);
+
     });
   }
 }

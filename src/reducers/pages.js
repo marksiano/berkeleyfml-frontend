@@ -9,9 +9,11 @@ const initialState =  {
 export default function pages(state = initialState, action) {
   switch (action.type) {
 
-  	case DID_INITIAL_LOAD:
-  		state.did_initial_load = true;
-  		return state;
+  	case DID_INITIAL_LOAD: {
+  		const newState = Object.assign({}, state);
+  		newState.did_initial_load = true;
+  		return newState;
+  	}
 
     default:
       return state;

@@ -12,16 +12,14 @@ export default function configureStore(initialState) {
     compose(
       applyMiddleware(thunkMiddleware),
       autoRehydrate(),
-      //window.devToolsExtension ? window.devToolsExtension() : undefined
+      // window.devToolsExtension ? window.devToolsExtension() : undefined - disabled for prod
     )
   );
 
   // begin periodically persisting the store
   persistStore(store, {blacklist: ['posts', 'pages', 'comments', 'modal', 'authorization']}, () => {
     store.dispatch(Actions.rehydrationComplete());
-    console.log('rehyrdration complete')
-  }
-    )
+  })
 
   if (module.hot) {
     // Enable Webpack hot module replacement for reducers

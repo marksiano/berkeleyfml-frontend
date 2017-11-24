@@ -142,6 +142,20 @@
   border-color: #CCCCCC;
 }
 
+.sort_container {
+  background-color: white;
+  display: inline;
+  padding-bottom: 3px;
+}
+
+.sort_box {
+  display: inline;
+  border-style: solid;
+  border-width: 1px;
+  padding-bottom: 3px;
+  border-color: #CCCCCC;
+}
+
 .title_div {
   width: 600px;
   margin-top: 30px;
@@ -169,9 +183,6 @@
   padding-right: 10px;
 }
 
-.table_container {
-}
-
 .reply_box_container {
   margin-top: 15px;
   margin-bottom: 0px;
@@ -179,6 +190,11 @@
 
 .reply_link {
   cursor: pointer;
+}
+
+.sort_link {
+  cursor: pointer;
+  font-size: 13px;
 }
 
 .title_text {
@@ -193,12 +209,45 @@
   margin-left: 1px;
 }
 
+.back {
+  cursor: pointer;
+  color: white;
+  bottom: 0;
+  text-align: left;
+  display: inline;
+  padding-right: 15px;
+}
+
+.back:hover {
+  cursor: pointer;
+  color: white;
+  bottom: 0;
+  text-align: left;
+  display: inline;
+}
+
+.back:visited {
+  cursor: pointer;
+  color: white;
+  bottom: 0;
+  text-align: left;
+  display: inline;
+}
+
+.back:active {
+  cursor: pointer;
+  color: white;
+  bottom: 0;
+  text-align: left;
+  display: inline;
+}
+
 .submit_fml {
   cursor: pointer;
   color: white;
   bottom: 0;
   text-align: right;
-  display: block;
+  display: inline;
 }
 
 .submit_fml:hover {
@@ -206,7 +255,7 @@
   color: white;
   bottom: 0;
   text-align: right;
-  display: block;
+  display: inline;
 }
 
 .submit_fml:visited {
@@ -214,7 +263,7 @@
   color: white;
   bottom: 0;
   text-align: right;
-  display: block;
+  display: inline;
 }
 
 .submit_fml:active {
@@ -222,7 +271,7 @@
   color: white;
   bottom: 0;
   text-align: right;
-  display: block;
+  display: inline;
 }
 
 .submit_fml_container {

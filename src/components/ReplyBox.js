@@ -75,8 +75,8 @@ class ReplyBox extends Component {
 
   addComment(author, text) {
 
-  	if (text == null || text.length < 20) {
-  		alert("Reply too short");
+  	if (text == null || text.length < 15) {
+  		alert("Sorry, your reply is too short.");
   		return;
   	}
 
@@ -86,8 +86,6 @@ class ReplyBox extends Component {
 
     for (var i = 0; i < this.props.posts.docs.length; i++) {
       var currentDoc = this.props.posts.docs[i];
-      console.log(JSON.stringify(currentDoc));
-      console.log(this.props.commentId + " - " + this.props.postId);
       if (currentDoc._id == this.props.postId) { //Found it
         //alert("Post id: " + currentDoc._id);
 
@@ -105,21 +103,29 @@ class ReplyBox extends Component {
 	        commentObject._id = numComments + 1;
 
 	        var today = new Date();
-  			var h = today.getHours();
-  			var m = today.getMinutes();
-  			var suffix =  h >= 12 ? " pm" : " am";
+    			var h = today.getHours();
+    			var m = today.getMinutes();
+    			var suffix =  h >= 12 ? " pm" : " am";
 
-  			if (h > 12) {
-  				h -= 12;
-  			}
+    			if (h > 12) {
+    				h -= 12;
+    			}
 
-  			var timeString = h + ':' + m + suffix;
-  			if (m < 10) {
-  				timeString = h + ':0' + m + suffix;
-  			}
+    			var timeString = h + ':' + m + suffix;
+    			if (m < 10) {
+    				timeString = h + ':0' + m + suffix;
+    			}
 
 
-  			commentObject.timeString = timeString;
+    			commentObject.timeString = timeString;
+
+          var today = new Date();
+          var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+            "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+          ];
+          var date = monthNames[today.getMonth()] + ' ' + today.getDate() + ', ' + today.getFullYear();
+
+          commentObject.dateString = date;
 
 	        //Go through the comments, find the comment with the right id (this is the one you are replying to)
 	        var comment = this.commentWithId(currentComments, this.props.commentId);

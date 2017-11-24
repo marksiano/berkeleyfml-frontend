@@ -70,7 +70,6 @@ export default function posts(state = initialState, action) {
       }
 
     case OPEN_REPLY_BOX:
-      console.log("Action: " + action.postId);
       return {
         ...state, data: {
           ...state.data,
