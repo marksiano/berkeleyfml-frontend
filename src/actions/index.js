@@ -42,6 +42,7 @@ export function rehydrationComplete() {
 }
 
 export function updatePages() {
+	console.log("Done updating");
 	return {
 		type: UPDATE_PAGES
 	}

@@ -75,7 +75,7 @@ class ReplyBox extends Component {
 
   addComment(author, text) {
 
-  	if (text == null || text.length < 15) {
+  	if (text == null || text.length < 5) {
   		alert("Sorry, your reply is too short.");
   		return;
   	}
@@ -97,7 +97,7 @@ class ReplyBox extends Component {
         //If we're replying to a comment, we need to look through the comments
         if (this.props.commendId != -1) {
 	        var commentObject = {};
-	        commentObject.author = author == null ? 'anonymous' : author;
+	        commentObject.author = ((author == null || author == undefined || author == "") ? 'anonymous' : author);
 	        commentObject.text = text;
 	        commentObject.comments = [];
 	        commentObject._id = numComments + 1;

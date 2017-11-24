@@ -21,13 +21,15 @@ class IndexPost extends Component {
 
       if (this.props.posts.posts.data.updating == true) {
         return;
-      } else if (this.props.pages.did_initial_load == false && localStorage.getItem('jwt-token') != undefined) {  //LOCAL STORAGE IS FUCKING ASYNC. WAIT UNTIL TIS NOT NULL
-        this.props.actions.didInitialLoad();  //Prevent the initial load from happening twice
+      } else if (this.props.pages.did_initial_load == true && localStorage.getItem('jwt-token') != undefined) {  //LOCAL STORAGE IS FUCKING ASYNC. WAIT UNTIL TIS NOT NULL
+//        this.props.actions.didInitialLoad();  //Prevent the initial load from happening twice
+        console.log("Getting with offset: " + this.props.posts.posts.data.offset);
           axios.get(constants.api_url + 'posts/offset/' + (+this.props.posts.posts.data.offset), {
           headers: {
             'Authorization': localStorage.getItem('jwt-token')
           }})
       .then(response => {
+        console.log(JSON.stringify(response.data));
         this.props.actions.updatePages();
         this.props.onLoad(response.data);
         //this.setState({ posts: response.data });
@@ -38,7 +40,26 @@ class IndexPost extends Component {
     }
 
     componentDidMount() {
-      
+      var constants = require('../constants.json');
+
+      if (this.props.posts.posts.data.updating == true) {
+        return;
+      } else if (this.props.pages.did_initial_load == false && localStorage.getItem('jwt-token') != undefined) {  //LOCAL STORAGE IS FUCKING ASYNC. WAIT UNTIL TIS NOT NULL
+        //this.props.actions.didInitialLoad();  //Prevent the initial load from happening twice
+        console.log("Getting with offset: " + this.props.posts.posts.data.offset);
+          axios.get(constants.api_url + 'posts/offset/' + (+this.props.posts.posts.data.offset), {
+          headers: {
+            'Authorization': localStorage.getItem('jwt-token')
+          }})
+      .then(response => {
+        console.log(JSON.stringify(response.data));
+        this.props.actions.updatePages();
+        this.props.onLoad(response.data);
+        //this.setState({ posts: response.data });
+      })
+      .catch(function (error) {
+      })
+      }
     }
 
     //Iterate through all posts, generate table rows

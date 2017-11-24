@@ -12,7 +12,7 @@ export default function configureStore(initialState) {
     compose(
       applyMiddleware(thunkMiddleware),
       autoRehydrate(),
-      // window.devToolsExtension ? window.devToolsExtension() : undefined - disabled for prod
+      window.devToolsExtension ? window.devToolsExtension() : undefined
     )
   );
 

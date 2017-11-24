@@ -58,7 +58,7 @@ export default function posts(state = initialState, action) {
       }
 
     /* Switch the "updating" variable to false */
-    case DONE_UPDATING:
+    case DONE_UPDATING: {
       return {
         ...state, data: {
           ...state.data,
@@ -68,6 +68,7 @@ export default function posts(state = initialState, action) {
           replyBoxCommentId: state.data.replyBoxCommentId
         }
       }
+    }
 
     case OPEN_REPLY_BOX:
       return {
