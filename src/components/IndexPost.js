@@ -46,7 +46,6 @@ class IndexPost extends Component {
       if(this.props.postData instanceof Array){
         return this.props.postData.map(function(object, i){
             //Object is the individual post, passed to TableRow
-            //console.log("Post comments: " + JSON.stringify(object.comments));
             if (object.approved == "true") {  //Only show approved posts. the approved tag is changed in mlab
               return <TableRow onUpvote={this.props.onUpvote} onDownvote={this.props.onDownvote} obj={object} key={i} comments={object.comments} />;
             } else {
@@ -88,8 +87,7 @@ class IndexPost extends Component {
     return {
       posts: state,
       pages: state.pages,
-      authorization: state.authorization.authorization,
-      sorttype: state.sorttype
+      authorization: state.authorization.authorization
     };
   }
 

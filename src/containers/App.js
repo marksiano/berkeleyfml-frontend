@@ -50,7 +50,7 @@ class App extends Component {
       if (this.props.pages.data.updating == true) {
         return;
       } else {
-        axios.get(constants.api_url + 'posts/offset/' + this.props.sorttype.sorttype + '/' + (+this.props.pages.data.offset), {
+        axios.get(constants.api_url + 'posts/offset/' + (+this.props.pages.data.offset), {
           headers: {
             'Authorization': localStorage.getItem('jwt-token')
           }})
@@ -106,8 +106,7 @@ function mapStateToProps(state) {
     pages: state.posts,
     requestedPages: state.posts.data.requestedPages,
     modal: state.modal,
-    authorization: state.authorization,
-    sorttype: state.sorttype
+    authorization: state.authorization
   };
 }
 
