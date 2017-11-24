@@ -10,7 +10,6 @@ import * as Actions from '../actions';
 import '../styles/App.css';
 import { connect } from 'react-redux';
 import axios from 'axios';
-import {Helmet} from "react-helmet";
 
 import InfiniteScroll from 'react-infinite-scroller';
 
