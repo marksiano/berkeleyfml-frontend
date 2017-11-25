@@ -32,6 +32,8 @@ class Post extends Component {
     	postObject.dateString = responseData.dateString;
     	postObject.comments = responseData.comments.slice();
     	this.props.actions.loadPost(postObject);
+
+      console.log("Post object: " + JSON.stringify(postObject.comments));
     })
     .catch(function (error) {
 
@@ -39,6 +41,7 @@ class Post extends Component {
 	}
 
 	render() {
+    //console.log("Comments: " + JSON.stringify(this.tabComments()));
 		return (
 			<div className="row_container" height="800px" style={{"margin-top": "50px"}}>
           <div width="100%" height="200px">
@@ -76,7 +79,7 @@ class Post extends Component {
 
           <div width="100%" style={{"padding-bottom": "15px"}}>
             <div>
-              {this.tabComments()}
+              {this.tabComments()}              
             </div>
           </div>
 
@@ -91,6 +94,7 @@ class Post extends Component {
 	//Iterate through all posts, generate table rows
   tabComments() {
     if(this.props.currentPost.comments instanceof Array){
+      console.log("Tabbing comments: " + JSON.stringify(this.props.currentPost.comments));
       return this.props.currentPost.comments.map(function(comment, i) {
           if (comment.comments != undefined && comment.comments.length != 0) {  //Only show approved posts. the approved tag is changed in mlab
             return (
@@ -102,11 +106,11 @@ class Post extends Component {
 
               </div>)
           } else {
-            return
+            return (
             <div>
               <hr className="line" style={{"margin-left": 15}} /><p className="comment"><b>{comment.author}</b> | {comment.timeString}</p>
               <p className="comment">{comment.text}</p>
-            </div>
+            </div>)
           }
       }, this)
     }
@@ -123,11 +127,11 @@ class Post extends Component {
 
         </div>)
       } else {
-        return
+        return (
         <div>
           <hr className="line" style={{"margin-left": 15 + (level * 30)}} /><p className="comment" style={{"margin-left": 15 + (level * 30)}}><b>{reply.author}</b> | {reply.timeString}</p>
           <p className="comment" style={{"margin-left": 15 + (level * 30)}}>{reply.text}</p>
-        </div>
+        </div>)
       }
     }, this)
   }

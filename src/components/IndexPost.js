@@ -16,50 +16,43 @@ class IndexPost extends Component {
       this.addPostService = new PostService();
     }
 
+    shouldComponentUpdate(nextProps, nextState) {
+      return true;
+    }
+
     componentWillReceiveProps(nextProps) {
+      //if (this.props != nextProps) {
       var constants = require('../constants.json');
 
       if (this.props.posts.posts.data.updating == true) {
+        console.log("Updating");
         return;
-      } else if (this.props.pages.did_initial_load == true && localStorage.getItem('jwt-token') != undefined) {  //LOCAL STORAGE IS FUCKING ASYNC. WAIT UNTIL TIS NOT NULL
-//        this.props.actions.didInitialLoad();  //Prevent the initial load from happening twice
-        console.log("Getting with offset: " + this.props.posts.posts.data.offset);
+      } else if (this.props.pages.did_initial_load == false && localStorage.getItem('jwt-token') != undefined && nextProps.pages.did_initial_load != true) {  //LOCAL STORAGE IS FUCKING ASYNC. WAIT UNTIL TIS NOT NULL
+        console.log("Component will receive props");
+        console.log("This props: " + JSON.stringify(this.props));
+        console.log("nextProps: " + JSON.stringify(nextProps));
+        this.props.actions.didInitialLoad();  //Prevent the initial load from happening twice
+        console.log("Current JWT Token: " + JSON.stringify(localStorage));
           axios.get(constants.api_url + 'posts/offset/' + (+this.props.posts.posts.data.offset), {
           headers: {
             'Authorization': localStorage.getItem('jwt-token')
           }})
       .then(response => {
-        console.log(JSON.stringify(response.data));
         this.props.actions.updatePages();
+        console.log("API GET data: " + JSON.stringify(response.data));
         this.props.onLoad(response.data);
         //this.setState({ posts: response.data });
       })
       .catch(function (error) {
+        console.log("ERRPR: " + error);
       })
       }
+    //}
     }
 
     componentDidMount() {
+      console.log("Component did mount");
       var constants = require('../constants.json');
-
-      if (this.props.posts.posts.data.updating == true) {
-        return;
-      } else if (this.props.pages.did_initial_load == false && localStorage.getItem('jwt-token') != undefined) {  //LOCAL STORAGE IS FUCKING ASYNC. WAIT UNTIL TIS NOT NULL
-        //this.props.actions.didInitialLoad();  //Prevent the initial load from happening twice
-        console.log("Getting with offset: " + this.props.posts.posts.data.offset);
-          axios.get(constants.api_url + 'posts/offset/' + (+this.props.posts.posts.data.offset), {
-          headers: {
-            'Authorization': localStorage.getItem('jwt-token')
-          }})
-      .then(response => {
-        console.log(JSON.stringify(response.data));
-        this.props.actions.updatePages();
-        this.props.onLoad(response.data);
-        //this.setState({ posts: response.data });
-      })
-      .catch(function (error) {
-      })
-      }
     }
 
     //Iterate through all posts, generate table rows

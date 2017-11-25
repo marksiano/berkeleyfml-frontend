@@ -38,6 +38,7 @@ class App extends Component {
       })
       .then(response => {
         localStorage.setItem('jwt-token', 'Bearer ' + response.data);
+        console.log("Done authorizing");
         this.props.actions.authorize();
       })
       .catch(error => {
