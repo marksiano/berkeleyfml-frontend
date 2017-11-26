@@ -20,6 +20,6 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-#credentials
+# credentials
 /src/credentials.json
 /src/constants.json
